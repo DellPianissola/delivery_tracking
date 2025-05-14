@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 let deliveries = [];
 let idCounter = 1;
 
+
 app.post('/deliveries', (req, res) => {
   const newDelivery = { id: idCounter++, ...req.body };
   deliveries.push(newDelivery);
