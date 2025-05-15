@@ -36,3 +36,49 @@
     transform: rotate(360deg);
   }
 }
+
+/* CSS HEX */
+--cadet-gray: #87a5adff;
+--liver: #66493eff;
+--beaver: #a2867bff;
+--brown-sugar: #bb815cff;
+--outer-space: #41454aff;
+
+/* CSS HSL */
+--cadet-gray: hsla(193, 19%, 60%, 1);
+--liver: hsla(16, 24%, 32%, 1);
+--beaver: hsla(17, 17%, 56%, 1);
+--brown-sugar: hsla(23, 41%, 55%, 1);
+--outer-space: hsla(213, 6%, 27%, 1);
+
+/* SCSS HEX */
+$cadet-gray: #87a5adff;
+$liver: #66493eff;
+$beaver: #a2867bff;
+$brown-sugar: #bb815cff;
+$outer-space: #41454aff;
+
+/* SCSS HSL */
+$cadet-gray: hsla(193, 19%, 60%, 1);
+$liver: hsla(16, 24%, 32%, 1);
+$beaver: hsla(17, 17%, 56%, 1);
+$brown-sugar: hsla(23, 41%, 55%, 1);
+$outer-space: hsla(213, 6%, 27%, 1);
+
+/* SCSS RGB */
+$cadet-gray: rgba(135, 165, 173, 1);
+$liver: rgba(102, 73, 62, 1);
+$beaver: rgba(162, 134, 123, 1);
+$brown-sugar: rgba(187, 129, 92, 1);
+$outer-space: rgba(65, 69, 74, 1);
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-right: linear-gradient(90deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-bottom: linear-gradient(180deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-left: linear-gradient(270deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-top-right: linear-gradient(45deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-bottom-right: linear-gradient(135deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-top-left: linear-gradient(225deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-bottom-left: linear-gradient(315deg, #87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);
+$gradient-radial: radial-gradient(#87a5adff, #66493eff, #a2867bff, #bb815cff, #41454aff);

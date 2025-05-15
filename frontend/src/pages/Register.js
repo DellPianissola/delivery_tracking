@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AppBar, Toolbar, Typography, Button, Box, Grid, Paper, Divider } from '@mui/material';
+import CustomTextField from '../components/CustomTextField';
+import { createDelivery } from '../api/delivery';
+import { useTheme } from '@mui/material/styles';
+
 
 function Register() {
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const [form, setForm] = useState({
     customerName: '',
@@ -68,37 +74,91 @@ function Register() {
       destination,
     };
 
-    await axios.post('http://localhost:3001/deliveries', dataToSend);
+    await createDelivery(dataToSend);
     alert('Delivery registered!');
     navigate('/deliveries');
   };
 
   return (
-    <div>
-      <h2>Register Delivery</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="customerName" placeholder="Customer Name" onChange={handleChange} required />
-        <input name="deliveryDate" type="date" onChange={handleChange} required />
+    <>
+      {/* Header */}
+      <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main }}>
+        <Toolbar>
+          <Typography variant="h6">Rastreio de Entregas</Typography>
+        </Toolbar>
+      </AppBar>
 
-        <h4>Origin</h4>
-        <input name="originCep" placeholder="CEP" value={form.originCep} onChange={handleChange} onBlur={() => fetchAddress(form.originCep, 'origin')} />
-        <input name="originStreet" placeholder="Street" value={form.originStreet} onChange={handleChange} />
-        <input name="originNumber" placeholder="Number" value={form.originNumber} onChange={handleChange} />
-        <input name="originNeighborhood" placeholder="Neighborhood" value={form.originNeighborhood} onChange={handleChange} />
-        <input name="originCity" placeholder="City" value={form.originCity} onChange={handleChange} />
-        <input name="originState" placeholder="State" value={form.originState} onChange={handleChange} />
+      {/* Form Container */}
+      <Box sx={{ padding: 4, backgroundColor: theme.palette.background.default, minHeight: '100vh' }}>
+        <Paper elevation={3} sx={{ padding: 4, maxWidth: 800, margin: '0 auto', backgroundColor: theme.palette.primary.main }}>
+          <Typography variant="h5" gutterBottom sx={{ color: theme.palette.text.primary }}>
+            Registre a Entrega
+          </Typography>
 
-        <h4>Destination</h4>
-        <input name="destinationCep" placeholder="CEP" value={form.destinationCep} onChange={handleChange} onBlur={() => fetchAddress(form.destinationCep, 'destination')} />
-        <input name="destinationStreet" placeholder="Street" value={form.destinationStreet} onChange={handleChange} />
-        <input name="destinationNumber" placeholder="Number" value={form.destinationNumber} onChange={handleChange} />
-        <input name="destinationNeighborhood" placeholder="Neighborhood" value={form.destinationNeighborhood} onChange={handleChange} />
-        <input name="destinationCity" placeholder="City" value={form.destinationCity} onChange={handleChange} />
-        <input name="destinationState" placeholder="State" value={form.destinationState} onChange={handleChange} />
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              {/* Customer Info */}
+              <Grid size={12}>
+                <CustomTextField fullWidth required name="customerName" label="Nome do Consumidor" value={form.customerName} onChange={handleChange} />
+              </Grid>
+              <Grid size={12}>
+                <CustomTextField fullWidth required name="deliveryDate" type="date" label="Data da Entrega" InputLabelProps={{ shrink: true }} value={form.deliveryDate} onChange={handleChange} />
+              </Grid>
 
-        <button type="submit">Save</button>
-      </form>
-    </div>
+              <Grid size={12}><Divider sx={{ marginY: 2, color: theme.palette.text.primary }}><strong>Origem</strong></Divider></Grid>
+
+              {/* Origin Address */}
+              <Grid size={4}>
+                <CustomTextField fullWidth name="originCep" label="CEP" value={form.originCep} onChange={handleChange} onBlur={() => fetchAddress(form.originCep, 'origin')} />
+              </Grid>
+              <Grid size={8}>
+                <CustomTextField fullWidth name="originStreet" label="Rua" value={form.originStreet} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="originNumber" label="Número" value={form.originNumber} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="originNeighborhood" label="Bairro" value={form.originNeighborhood} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="originCity" label="Cidade" value={form.originCity} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="originState" label="Estado" value={form.originState} onChange={handleChange} />
+              </Grid>
+
+              <Grid size={12}><Divider sx={{ marginY: 2, color: theme.palette.text.primary }}><strong>Destino</strong></Divider></Grid>
+
+              {/* Destination Address */}
+              <Grid size={4}>
+                <CustomTextField fullWidth name="destinationCep" label="CEP" value={form.destinationCep} onChange={handleChange} onBlur={() => fetchAddress(form.destinationCep, 'destination')} />
+              </Grid>
+              <Grid size={8}>
+                <CustomTextField fullWidth name="destinationStreet" label="Rua" value={form.destinationStreet} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="destinationNumber" label="Número" value={form.destinationNumber} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="destinationNeighborhood" label="Bairro" value={form.destinationNeighborhood} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="destinationCity" label="Cidade" value={form.destinationCity} onChange={handleChange} />
+              </Grid>
+              <Grid size={4}>
+                <CustomTextField fullWidth name="destinationState" label="Estado" value={form.destinationState} onChange={handleChange} />
+              </Grid>
+
+              <Grid size={12}>
+                <Button type="submit" variant="contained" color="primary" fullWidth sx={{ backgroundColor: theme.palette.secondary.main, marginTop: 2 }}>
+                  Salvar Entrega
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Paper>
+      </Box>
+    </>
   );
 }
 
