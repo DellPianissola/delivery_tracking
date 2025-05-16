@@ -19,6 +19,12 @@ const theme = createTheme({
     text: {
       primary: themeColors.text,
     },
+    custom: {
+      outline: themeColors.lightBrown,
+      hoverOutline: themeColors.accent,
+      rowLight: themeColors.rowLight,
+      rowDark: themeColors.rowDark,
+    }
   },
   components: {
     MuiTextField: {

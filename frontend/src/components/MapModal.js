@@ -10,20 +10,25 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, useJsApiLoader, DirectionsRenderer } from '@react-google-maps/api';
 import { getDeliveryById } from '../api/delivery';
+import { useTheme } from '@mui/material/styles';
+
 
 const containerStyle = {
   width: '100%',
   height: '500px',
 };
 
+
 function MapModal({ open, onClose, deliveryId }) {
   const [delivery, setDelivery] = useState(null);
   const [directions, setDirections] = useState(null);
+  const theme = useTheme();
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: 'AIzaSyCc3Jz53EZFOP9xwemHbcEp9DwS6mFzwXY',
     libraries: ['places'],
   });
+
 
   useEffect(() => {
     if (!deliveryId || !isLoaded) return;
@@ -48,9 +53,10 @@ function MapModal({ open, onClose, deliveryId }) {
     });
   }, [deliveryId, isLoaded]);
 
+
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
-      <DialogTitle>
+      <DialogTitle sx={{ color: theme.palette.primary.main }}>
         Rota da Entrega
         <IconButton onClick={onClose} sx={{ position: 'absolute', right: 8, top: 8 }}>
           <CloseIcon />
