@@ -77,8 +77,19 @@ function DeliveryList() {
                   >
                     <TableCell align="center" sx={{ color: theme.palette.text.primary }}>{delivery.customerName}</TableCell>
                     <TableCell align="center" sx={{ color: theme.palette.text.primary }}>{delivery.deliveryDate}</TableCell>
-                    <TableCell align="center" sx={{ color: theme.palette.text.primary }}>{delivery.origin}</TableCell>
-                    <TableCell align="center" sx={{ color: theme.palette.text.primary }}>{delivery.destination}</TableCell>
+
+                    <TableCell align="center" sx={{ color: theme.palette.text.primary }}>
+                      <div>{delivery.originStreet}, {delivery.originNumber}</div>
+                      <div>{delivery.originNeighborhood}</div>
+                      <div>{delivery.originCity} - {delivery.originState}</div>
+                    </TableCell>
+
+                    <TableCell align="center" sx={{ color: theme.palette.text.primary }}>
+                      <div>{delivery.destinationStreet}, {delivery.destinationNumber}</div>
+                      <div>{delivery.destinationNeighborhood}</div>
+                      <div>{delivery.destinationCity} - {delivery.destinationState}</div>
+                    </TableCell>
+
                     <TableCell align="center">
                       <Tooltip title="Ver no Mapa">
                         <IconButton

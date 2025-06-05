@@ -70,8 +70,18 @@ function Register() {
     const dataToSend = {
       customerName: form.customerName,
       deliveryDate: form.deliveryDate,
-      origin,
-      destination,
+
+      originStreet: form.originStreet,
+      originNumber: form.originNumber,
+      originNeighborhood: form.originNeighborhood,
+      originCity: form.originCity,
+      originState: form.originState,
+
+      destinationStreet: form.destinationStreet,
+      destinationNumber: form.destinationNumber,
+      destinationNeighborhood: form.destinationNeighborhood,
+      destinationCity: form.destinationCity,
+      destinationState: form.destinationState,
     };
 
     await createDelivery(dataToSend);
@@ -161,5 +171,5 @@ function Register() {
     </>
   );
 }
-
+                                                                                                            
 export default Register;

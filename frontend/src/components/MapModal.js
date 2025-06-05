@@ -35,11 +35,15 @@ function MapModal({ open, onClose, deliveryId }) {
 
     getDeliveryById(deliveryId).then((res) => {
       setDelivery(res.data);
+
+      const origin = `${res.data.originStreet}, ${res.data.originNumber}, ${res.data.originNeighborhood}, ${res.data.originCity}, ${res.data.originState}`;
+      const destination = `${res.data.destinationStreet}, ${res.data.destinationNumber}, ${res.data.destinationNeighborhood}, ${res.data.destinationCity}, ${res.data.destinationState}`;
+
       const service = new window.google.maps.DirectionsService();
       service.route(
         {
-          origin: res.data.origin,
-          destination: res.data.destination,
+          origin,
+          destination,
           travelMode: window.google.maps.TravelMode.DRIVING,
         },
         (result, status) => {
